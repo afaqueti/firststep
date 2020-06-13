@@ -1,5 +1,13 @@
 # Projeto Docker Django
 
+##### Definir estrutura do projeto
+
+Para este projeto, você precisa criar um Dockerfile, um arquivo de dependências do Python e um docker-compose.ymlarquivo. (Você pode usar uma extensão .ymlou .yamlpara este arquivo.)
+
+1. Crie um diretório de projeto vazio.
+
+    Você pode nomear o diretório como algo fácil de lembrar. Este diretório é o contexto para a sua imagem do aplicativo. O diretório deve conter apenas recursos para criar essa imagem.
+
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
 
 1. Para fazer backup, usamos a pg_dump ferramenta:
