@@ -140,7 +140,9 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
         web_1  | Starting development server at http://0.0.0.0:8000/
         web_1  | Quit the server with CONTROL-C.
 
-
+    Nesse ponto, seu aplicativo Django deve estar em execução na porta 8000no host do Docker.
+    
+    
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
 
 1. Para fazer backup, usamos a pg_dump ferramenta:
