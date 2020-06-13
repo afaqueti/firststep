@@ -52,14 +52,13 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
     
 ##### Criando o projeto Django
 
-
    Nesta etapa, você cria um projeto inicial do Django construindo a imagem a partir do contexto de construção definido no procedimento anterior.
     
 1. Mude para a raiz do diretório do seu projeto.
 
 2. Crie o projeto Django executando o comando docker-compose run da seguinte maneira.
 
-        sudo docker-compose run web django-admin startproject <nome-do-projeto> .
+        sudo docker-compose run web django-admin startproject composeexemplo .
 
     Isso instrui o Compose a executar _**django-admin startproject composeexample**_ em um contêiner, usando a web imagem e a configuração do serviço. Como a web imagem ainda não existe, o Compose a cria a partir do diretório atual, conforme especificado pela build: . linha em docker-compose.yaml.
 
@@ -86,6 +85,61 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
         -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
         -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
         -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
+        
+##### Conecte o banco de dados
+
+   Nesta seção, você configura a conexão com o banco de dados para o Django.
+   
+1. No diretório do seu projeto, edite o composeexample/settings.pyarquivo.
+
+2. Substitua DATABASES = ...por:
+
+        # setting.py
+   
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'postgres',
+                'USER': 'postgres',
+                'PASSWORD': 'postgres',
+                'HOST': 'db',
+                'PORT': 5432,
+            }
+        }
+        
+    Essas configurações são determinadas pela imagem do postgres Docker especificada em docker-compose.yml. Salve e feche o arquivo setting.py.
+
+3. Execute o comando **_docker-compose up_** no diretório raiz do seu projeto.
+
+        $ ls -l
+        total 32
+        -rw-r--r--  1 user  staff  145 Feb 13 23:00 Dockerfile
+        drwxr-xr-x  6 user  staff  204 Feb 13 23:07 composeexample
+        -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
+        -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
+        -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
+
+    Esse será o retorno do comando, informado que a porta está pronta para acessar o endereço "web_1  | Starting development server at http://0.0.0.0:8000/".
+    
+        $ docker-compose up
+        djangosample_db_1 is up-to-date
+        Creating djangosample_web_1 ...
+        Creating djangosample_web_1 ... done
+        Attaching to djangosample_db_1, djangosample_web_1
+        db_1   | The files belonging to this database system will be owned by user "postgres".
+        db_1   | This user must also own the server process.
+        db_1   |
+        db_1   | The database cluster will be initialized with locale "en_US.utf8".
+        db_1   | The default database encoding has accordingly been set to "UTF8".
+        db_1   | The default text search configuration will be set to "english".
+
+. . .
+
+web_1  | May 30, 2017 - 21:44:49
+web_1  | Django version 1.11.1, using settings 'composeexample.settings'
+web_1  | Starting development server at http://0.0.0.0:8000/
+web_1  | Quit the server with CONTROL-C.
+
 
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
 
