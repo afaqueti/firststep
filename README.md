@@ -195,13 +195,13 @@ Fim .....
 ##### Portainer - Gerenciar através de ferramenta "Web-localhost"   
 
 
-   Crie um arquivo .sh e execute, pois o portainer irá gerar todos os devidos parametros criando um container para gestão de todos os outros containers.    
+1. Crie um arquivo .sh e execute, pois o portainer irá gerar todos os devidos parametros criando um container para gestão de todos os outros containers.    
 
         #!/bin/bash
         docker volume create portainet_data
         docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 
-   Após executar o procedimento acima acesse o endereço no seu navegador "localhost:9000"
+2. Após executar o procedimento acima acesse o endereço no seu navegador "localhost:9000"
    
-   Cadastre um usuário / senha e indique o modo local. 
+   Cadastre um usuário / senha e indique o modo local. Acesse a imagem gerada que irá gerenciar os outros containers. 
    
