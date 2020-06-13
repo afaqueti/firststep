@@ -158,4 +158,6 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
         $ docker exec -i <postgres_container_name> psql -U postgres -d <database_name> < backup.sql
    
         O **-i** sinalizador é de particular importância aqui, porque a psql ferramenta precisa ser executada interativamente para poder ler o backup.sql arquivo.
-       
+    
+##### Portainer - Gerenciar através de ferramenta "Web-localhost"       
+
