@@ -172,7 +172,8 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
 
         $ docker-compose up      
         
-
+    Após iniciar o serviço Django, abra o seu navegar com endereço localhost:8000/admin o django irá direcionar para pagina admin, consequentemente informe o usuário/senha cadastrado.
+    
 Fim .....             
             
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
