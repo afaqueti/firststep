@@ -1,4 +1,4 @@
-# Projeto Docker Django
+# Projeto Docker, Django, Postgres, Python e Portainer
 
 ##### Definir estrutura do projeto
 
