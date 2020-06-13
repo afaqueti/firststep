@@ -142,7 +142,39 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
 
     Nesse ponto, seu aplicativo Django deve estar em execução na porta 8000no host do Docker.
     
+##### Migrate para montar o banco de dados 
+
+   Para executar essa ação, devemos para o serviço _**"docker-compose up"**_ com a seguinte sequencia tecla de atalho <CTRL+C> parando o serviço do Django.
+   
+1. Estando no diretŕio raiz do projeto
+
+        $ ls -l
+        total 32
+        -rw-r--r--  1 user  staff  145 Feb 13 23:00 Dockerfile
+        drwxr-xr-x  6 user  staff  204 Feb 13 23:07 composeexample
+        -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
+        -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
+        -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
     
+2. Executa o comando:
+
+        $ sudo docker-compose run web python manage.py migrate
+        
+      O comando acima irá montar as tabelas padrões de Admin Django.
+      
+3. Para acessar o Admin do Django, será necessário criar um _**SUPER-USER**_.      
+           
+        $ sudo docker-compose run web python manage.py createsuperuser 
+
+     O Django irá solicitar o cadastro do usuário/senha de acesso a área ADMINISTRADOR do Django.
+
+    Inicie novamento o serviço no Django com o comando:
+
+        $ docker-compose up      
+        
+
+Fim .....             
+            
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
 
 1. Para fazer backup, usamos a pg_dump ferramenta:
@@ -159,5 +191,16 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
    
         O **-i** sinalizador é de particular importância aqui, porque a psql ferramenta precisa ser executada interativamente para poder ler o backup.sql arquivo.
     
-##### Portainer - Gerenciar através de ferramenta "Web-localhost"       
+##### Portainer - Gerenciar através de ferramenta "Web-localhost"   
 
+
+   Crie um arquivo .sh e execute, pois o portainer irá gerar todos os devidos parametros criando um container para gestão de todos os outros containers.    
+
+        #!/bin/bash
+        docker volume create portainet_data
+        docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+   Após executar o procedimento acima acesse o endereço no seu navegador "localhost:9000"
+   
+   Cadastre um usuário / senha e indique o modo local. 
+   
