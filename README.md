@@ -10,7 +10,7 @@
    
 2. Isso criaria um arquivo de texto chamado backup.sqlcontendo todos os dados e esquema do seu banco de dados. Você pode importar esses dados novamente para o postgres usando a psqlferramenta:
 
-    - Para importar o arquivo **_**backup.sql**_ 
+    - Para importar o arquivo _**backup.sql**_
     
         $ docker exec -i <postgres_container_name> psql -U postgres -d <database_name> < backup.sql
    
