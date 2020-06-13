@@ -132,13 +132,13 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
         db_1   | The database cluster will be initialized with locale "en_US.utf8".
         db_1   | The default database encoding has accordingly been set to "UTF8".
         db_1   | The default text search configuration will be set to "english".
+        
+        . . .
 
-. . .
-
-web_1  | May 30, 2017 - 21:44:49
-web_1  | Django version 1.11.1, using settings 'composeexample.settings'
-web_1  | Starting development server at http://0.0.0.0:8000/
-web_1  | Quit the server with CONTROL-C.
+        web_1  | May 30, 2017 - 21:44:49
+        web_1  | Django version 1.11.1, using settings 'composeexample.settings'
+        web_1  | Starting development server at http://0.0.0.0:8000/
+        web_1  | Quit the server with CONTROL-C.
 
 
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
