@@ -56,7 +56,7 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
     
 1. Mude para a raiz do diretório do seu projeto.
 
-2. Crie o projeto Django executando o comando docker-compose run da seguinte maneira.
+2. Crie o projeto Django executando o comando **_docker-compose run_** da seguinte maneira.
 
         sudo docker-compose run web django-admin startproject composeexemplo .
 
