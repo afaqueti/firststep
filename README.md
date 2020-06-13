@@ -2,11 +2,23 @@
 
 ##### Definir estrutura do projeto
 
-Para este projeto, você precisa criar um Dockerfile, um arquivo de dependências do Python e um docker-compose.ymlarquivo. (Você pode usar uma extensão .ymlou .yamlpara este arquivo.)
+Para este projeto, você precisa criar um Dockerfile, um arquivo de dependências do Python e um docker-compose.yml arquivo. (Você pode usar uma extensão .yml ou .yaml para este arquivo.)
 
 1. Crie um diretório de projeto vazio.
 
     Você pode nomear o diretório como algo fácil de lembrar. Este diretório é o contexto para a sua imagem do aplicativo. O diretório deve conter apenas recursos para criar essa imagem.
+
+2. Crie um novo arquivo chamado Dockerfile no diretório do projeto.
+
+3. Adicione o seguinte conteúdo ao Dockerfile.
+
+FROM python:3
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /code
+WORKDIR /code
+COPY requirements.txt /code/
+RUN pip install -r requirements.txt
+COPY . /code/
 
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
 
