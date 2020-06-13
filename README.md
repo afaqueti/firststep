@@ -61,6 +61,32 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
 
         sudo docker-compose run web django-admin startproject <nome-do-projeto> .
 
+    Isso instrui o Compose a executar _**django-admin startproject composeexample**_ em um contêiner, usando a web imagem e a configuração do serviço. Como a web imagem ainda não existe, o Compose a cria a partir do diretório atual, conforme especificado pela build: . linha em docker-compose.yaml.
+
+    Depois que a web imagem de serviço é criada, o Compose a executa e executa o django-admin startproject comando no contêiner. Este comando instrui o Django a criar um conjunto de arquivos e diretórios representando um projeto do Django.
+
+3. Após a conclusão do docker-compose.yaml, liste o conteúdo do seu projeto.
+
+        $ ls -l
+        drwxr-xr-x 2 root   root   composeexample
+        -rw-rw-r-- 1 user   user   docker-compose.yml
+        -rw-rw-r-- 1 user   user   Dockerfile
+        -rwxr-xr-x 1 root   root   manage.py
+        -rw-rw-r-- 1 user   user   requirements.txt
+
+    Se você estiver executando o Docker no Linux, os arquivos django-admincriados pertencerão à raiz. Isso acontece porque o contêiner é executado como usuário root. Altere a propriedade dos novos arquivos.
+    
+        sudo chown -R $USER:$USER .
+    Se você estiver executando o Docker no Mac ou Windows, já deve ter a propriedade de todos os arquivos, incluindo os gerados por django-admin. Liste os arquivos apenas para verificar isso.
+    
+        $ ls -l
+        total 32
+        -rw-r--r--  1 user  staff  145 Feb 13 23:00 Dockerfile
+        drwxr-xr-x  6 user  staff  204 Feb 13 23:07 composeexample
+        -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
+        -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
+        -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
+
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
 
 1. Para fazer backup, usamos a pg_dump ferramenta:
