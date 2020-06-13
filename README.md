@@ -8,9 +8,7 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
 
     Você pode nomear o diretório como algo fácil de lembrar. Este diretório é o contexto para a sua imagem do aplicativo. O diretório deve conter apenas recursos para criar essa imagem.
 
-2. Crie um novo arquivo chamado Dockerfile no diretório do projeto.
-
-3. Adicione o seguinte conteúdo ao Dockerfile.
+2. Crie um novo arquivo chamado Dockerfile no diretório do projeto e salve com o seguinte conteudo.
 
         FROM python:3
         ENV PYTHONUNBUFFERED 1
@@ -19,6 +17,49 @@ Para este projeto, você precisa criar um Dockerfile, um arquivo de dependência
         COPY requirements.txt /code/
         RUN pip install -r requirements.txt
         COPY . /code/
+    
+3. Crie um arquivo requirements.txt no do projeto e salve com o seguinte conteudo.
+
+        Django>=2.0,<3.0
+        psycopg2>=2.7,<3.0
+
+4. Crie um arquivo chamado docker-compose.yml no diretório do projeto. No projeto em questão salvei com a exteção _**.yaml**_.
+
+    O docker-compose.ymlarquivo descreve os serviços que compõem seu aplicativo. Neste exemplo, esses serviços são um servidor da web e banco de dados. O arquivo de composição também descreve quais imagens do Docker esses serviços usam, como eles se vinculam, quaisquer volumes que possam precisar ser montados dentro dos contêineres. Por fim, o docker-compose.ymlarquivo descreve quais portas esses serviços expõem.
+    
+    Adicione a seguinte configuração ao arquivo.
+    
+        version: '3'
+    
+        services:
+            db:
+              image: postgres
+              environment:
+                - POSTGRES_DB=postgres
+                - POSTGRES_USER=postgres
+                - POSTGRES_PASSWORD=postgres
+            web:
+              build: .
+              command: python manage.py runserver 0.0.0.0:8000
+              volumes:
+                - .:/code
+               ports:
+                - "8000:8000"
+               depends_on:
+                - db
+    
+    Este arquivo define dois serviços: O db serviço e o webserviço. Salve e feche!
+    
+##### Criando o projeto Django
+
+
+   Nesta etapa, você cria um projeto inicial do Django construindo a imagem a partir do contexto de construção definido no procedimento anterior.
+    
+1. Mude para a raiz do diretório do seu projeto.
+
+2. Crie o projeto Django executando o comando docker-compose run da seguinte maneira.
+
+        sudo docker-compose run web django-admin startproject <nome-do-projeto> .
 
 ##### Backup e restauração do banco de dados Postgresql em execução no docker
 
