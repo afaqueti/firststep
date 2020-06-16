@@ -1,18 +1,15 @@
 body {
   display: grid;
-  font-family: Arial, sans-serif;
   grid-gap: 1rem;
   grid-template-areas:
     "header header header"
     "aside main main"
     "footer footer footer";
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto 80vh auto;
+  
 }
 
 .o-header {
   grid-area: header;
-  padding: 1.5rem;
 }
 
 .o-aside {
@@ -25,10 +22,22 @@ body {
 
 .o-footer {
   grid-area: footer;
-  padding: 1rem;
 }
 
 .o-header, .o-aside, .o-main, .o-footer {
   background: #BC20E2;
   color: #FDFDFD;
+}
+
+@media(max-width: 600px) {
+  body {
+  display: grid;
+  font-family: Arial, sans-serif;
+  grid-gap: 1rem;
+  grid-template-areas:
+    "header"
+    "aside"
+    "main"
+    "footer";
+}
 }
