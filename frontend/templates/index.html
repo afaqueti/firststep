@@ -4,12 +4,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>FRONTEND</title>
+
 	<link rel="stylesheet" href="{%static 'styles.css' %}">
 </head>
 <body>
-	<header class="o-header">Header</header>
-	<aside class="o-aside">Aside</aside>
-	<main class="o-main">Main</main>
-	<footer class="o-footer">Footer</footer>	
+	<logo class="o-logo">
+		<img src="{% static "image/linux.png" %}" alt="">
+	</logo>
+
+	<form>
+	  <div class="row">
+	    <div class="col">
+	      <input type="text" class="form-control" placeholder="First name">
+	    </div>
+	    <div class="col">
+	      <input type="text" class="form-control" placeholder="Last name">
+	    </div>
+	  </div>
+	</form>
+
 </body>
 </html>
