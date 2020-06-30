@@ -6,7 +6,7 @@ class Pessoa(models.Model):
         ("F", "F"),
         ("M", "M")
     )
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, null=True, blank=True)
     apelido = models.CharField(max_length=30, null=True, blank=True)
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES, blank=True, null=True)
     email = models.EmailField(max_length=254, null=True, blank=True)
